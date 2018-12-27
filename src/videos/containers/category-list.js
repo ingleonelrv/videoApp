@@ -3,7 +3,7 @@ import {View, FlatList} from 'react-native'
 
 import Empty from '../components/empty'
 import HorizontalSeparator from '../components/horizontal-separator'
-import Suggestion from '../components/suggestions'
+import Category from '../components/category'
 import CategoryListLayout from '../components/category-list-layout'
 
 class CategoryList extends Component{
@@ -12,7 +12,7 @@ class CategoryList extends Component{
     itemSeparator = () => <HorizontalSeparator />
     renderItem = ({item}) =>{
         return(
-            <Suggestion {...item} />
+            <Category {...item} />
         )
     }
     render(){
