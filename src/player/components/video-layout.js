@@ -5,7 +5,14 @@ function VideoLayout(props) {
     return (
       <View style={styles.container}>
         <View style={styles.video}>
-            {props.children}
+            {props.video}
+        </View>
+        <View style={styles.overlay}>
+            {/* condicion, si esta cargando mostrar el loader */}
+            {
+                props.loading &&
+                props.loader
+            }
         </View>
       </View>
     )
@@ -21,6 +28,15 @@ const styles = StyleSheet.create({
         top:0, 
         bottom:0,
         backgroundColor:'black'
+    },
+    overlay:{
+        position:"absolute",
+        left:0, 
+        right:0, 
+        top:0, 
+        bottom:0,
+        justifyContent: 'center',
+        alignItems:'center'
     }
 })
 export default VideoLayout

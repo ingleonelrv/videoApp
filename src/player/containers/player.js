@@ -1,20 +1,39 @@
 import React, { Component } from 'react'
-import {StyleSheet } from 'react-native'
+import {StyleSheet, ActivityIndicator } from 'react-native'
 import Video from 'react-native-video'
 import VideoLayout from '../components/video-layout'
 
 class Player extends Component {
-  render() {
-    return (
-        <VideoLayout>
-            <Video
-                source={{uri:'https://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4'}}
-                style={styles.video}
-                resizeMode='contain'
+    //creo un estado loadring:true porque el video siempre inicia cargando
+    state={
+        loading:true
+    }
+    //onBuffer recibe un objeto y este objeto tiene un metodo que devuelve un booleano
+    onBuffer = ({isBuffering}) =>{
+        //seteo el state con lo que me diga isBuffering
+        this.setState({
+            loading:isBuffering
+        })
+    }
+    render() {
+        return (
+            <VideoLayout
+                //tambien paso el estado como propiedad al Layout
+                loading={this.state.loading}
+                video={
+                    <Video
+                        source={{uri:'https://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4'}}
+                        style={styles.video}
+                        resizeMode='contain'
+                        onBuffer={this.onBuffer}
+                    />
+                }
+                loader={
+                    <ActivityIndicator color='red' />
+                }
             />
-        </VideoLayout>
-    )
-  }
+        )
+    }
 }
 const styles = StyleSheet.create({
     video: {
