@@ -14,6 +14,7 @@ function VideoLayout(props) {
                 props.loader
             }
         </View>
+        {props.controls}
       </View>
     )
 }
