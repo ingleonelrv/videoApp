@@ -2,10 +2,21 @@ import React from 'react'
 import {
     TouchableOpacity,
     StyleSheet,
-    Text
+    Platform
 } from 'react-native'
 
+import Icon from 'react-native-vector-icons/Ionicons'
+
 function FullScreen(props){
+    const expandIcon = Platform.select({
+        ios: 'ios-expand',
+        android: 'md-expand',
+      })
+    
+      const contractIcon = Platform.select({
+        ios: 'ios-contract',
+        android: 'md-contract'
+      })
     return(
         <TouchableOpacity 
             onPress={props.onPress} 
@@ -18,7 +29,7 @@ function FullScreen(props){
                 bottom:5
             }}
             >
-            <Text style={styles.button}>Full</Text>
+            <Icon name="md-expand" size={20} color="#E82943" />
         </TouchableOpacity>
     )
 }

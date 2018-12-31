@@ -8,6 +8,10 @@ import SuggestionList from './src/videos/containers/suggestion-list'
 import CategoryList from './src/videos/containers/category-list'
 import Player from './src/player/containers/player'
 
+//REDUX
+import {Provider} from 'react-redux'
+import store from './store'
+
 type Props = {};
 export default class App extends Component<Props> {
   state = {
@@ -26,15 +30,17 @@ export default class App extends Component<Props> {
   }
   render() {
     return (
-      <Home>
-        <Header>
-          <Text>Hola</Text>
-        </Header>
-        <Player />
-        <Text>Buscador</Text>
-        <CategoryList list={this.state.categoryList} />
-        <SuggestionList list={this.state.suggestionList} />
-      </Home>
+      <Provider store={store}>
+        <Home>
+          <Header>
+            <Text>Hola</Text>
+          </Header>
+          <Player />
+          <Text>Buscador</Text>
+          <CategoryList list={this.state.categoryList} />
+          <SuggestionList list={this.state.suggestionList} />
+        </Home>
+      </Provider>
     );
   }
 }

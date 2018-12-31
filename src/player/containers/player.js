@@ -82,7 +82,7 @@ class Player extends Component {
                             currentTime={this.state.currentTimeFormatted}
                             setProgressRef={this.setProgressRef} />
                         <Timer currentTime={this.state.currentTime} duration={this.state.duration} />
-                        <FullScreen onPress={this.fullScreenMode} />
+                        <FullScreen onPress={this.fullScreenMode} fullScreen={this.state.fullscreen} />
                     </ControlsLayout>
                 }
             />
