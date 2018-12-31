@@ -33,6 +33,10 @@ class CategoryList extends Component{
     }
 }
 function mapStateToProps(state,props){
-    debugger
+    // debugger
+    //del estado global (store) tomo los datos y aqui se cosumen como propiedad data={this.props.list}
+    return {
+        list: state.categoryList
+    }
 }
-export default connect(mapStateToProps) (CategoryList)
+export default connect(mapStateToProps)(CategoryList)

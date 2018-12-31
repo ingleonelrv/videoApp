@@ -4,6 +4,8 @@ import SuggestionListLayout from '../components/suggestion-list-layout'
 import Empty from '../components/empty'
 import VerticalSeparator from '../components/vertical-separator'
 import Suggestion from '../components/suggestions'
+//Redux
+import {connect} from 'react-redux'
 
 class SuggestionList extends Component{
     renderEmpty = () => <Empty text='No hay sugerencias en la lista' />
@@ -28,4 +30,9 @@ class SuggestionList extends Component{
         )
     }
 }
-export default SuggestionList
+function mapStateToProps(state,props){
+    return {
+        list:state.suggestionList
+    }
+}
+export default connect(mapStateToProps)(SuggestionList)
