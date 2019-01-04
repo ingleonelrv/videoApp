@@ -7,6 +7,7 @@ import Header from './src/sections/components/header'
 import SuggestionList from './src/videos/containers/suggestion-list'
 import CategoryList from './src/videos/containers/category-list'
 import Player from './src/player/containers/player'
+import Loading from './src/sections/components/loading'
 
 //REDUX
 import {Provider} from 'react-redux'
@@ -36,7 +37,7 @@ export default class App extends Component<Props> {
   render() {
     return (
       <Provider store={store}>
-        <PersistGate loading={<Text>Cargando...</Text>} persistor={persistor}>
+        <PersistGate loading={<Loading />} persistor={persistor}>
           <Home>
             <Header>
               <Text>Hola</Text>
