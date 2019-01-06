@@ -11,6 +11,7 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 const persistConfig = {
     key: 'root',
     storage,
+    blacklist:['selectedMovie']
 }
 
 //tomamos el(index) reducer y sacamos de ahi otro pero Configurado con persistReducer asi cada cambio que se haga al
