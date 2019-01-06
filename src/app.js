@@ -10,7 +10,7 @@ import Home from './screens/containers/home'
 import Header from './sections/components/header'
 import SuggestionList from './videos/containers/suggestion-list'
 import CategoryList from './videos/containers/category-list'
-import Player from './player/containers/player'
+import Movie from './screens/containers/movie'
 
 class AppLayout extends Component {
     async componentDidMount(){
@@ -31,18 +31,24 @@ class AppLayout extends Component {
         })
     }
   render() {
+    if(this.props.selectedMovie){
+      return <Movie />
+    }
     return (
-        <Home>
-            <Header>
-              <Text>Hola</Text>
-            </Header>
-            <Player />
-            <Text>Buscador</Text>
-            <CategoryList/>
-            <SuggestionList/>
-        </Home>
+      <Home>
+          <Header>
+            <Text>Hola</Text>
+          </Header>
+          <Text>Buscador</Text>
+          <CategoryList/>
+          <SuggestionList/>
+      </Home>
     )
   }
 }
-//Aqui no necesito datos del store por tanto le paso null
-export default connect(null)(AppLayout)
+function mapStateToProps(state,props){
+  return{
+    selectedMovie: state.selectedMovie
+  }
+}
+export default connect(mapStateToProps)(AppLayout)
