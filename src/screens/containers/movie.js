@@ -8,7 +8,13 @@ import Header from '../../sections/components/header'
 import Close from '../../sections/components/close'
 import Details from '../../videos/components/details'
 
+//React Native Animated
+import {Animated} from 'react-native'
+
 class Movie extends Component {
+  state={
+    opacity:new Animated.Value(0)
+  }
   //en SuggestionList seteo la pelicula seleccionada al store, aqui la borro
   videoClose = () =>{
     this.props.dispatch({
@@ -18,15 +24,25 @@ class Movie extends Component {
       }
     })
   }
+  componentDidMount(){
+    //el primer parametro que recibe tiene que ser una instancia de algo que se pueda animar
+    //como segundo parametro{a que valor, en que tiempo}
+    Animated.timing(this.state.opacity,{
+      toValue:1,
+      duration:1000
+    }).start();
+  }
   render() {
     return (
-      <MovieLayout>
-          <Header>
-            <Close onPress={this.videoClose} />
-          </Header>
-          <Player />
-          <Details {...this.props.movie} />
-      </MovieLayout>
+      <Animated.View style={{flex:1,opacity:this.state.opacity}}>
+        <MovieLayout>
+            <Header>
+              <Close onPress={this.videoClose} />
+            </Header>
+            <Player />
+            <Details {...this.props.movie} />
+        </MovieLayout>
+      </Animated.View>
     )
   }
 }
