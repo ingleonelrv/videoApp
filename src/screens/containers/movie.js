@@ -6,6 +6,7 @@ import MovieLayout from '../components/movie-layout'
 import Player from '../../player/containers/player'
 import Header from '../../sections/components/header'
 import Close from '../../sections/components/close'
+import Details from '../../videos/components/details'
 
 class Movie extends Component {
   //en SuggestionList seteo la pelicula seleccionada al store, aqui la borro
@@ -24,8 +25,14 @@ class Movie extends Component {
             <Close onPress={this.videoClose} />
           </Header>
           <Player />
+          <Details {...this.props.movie} />
       </MovieLayout>
     )
   }
 }
-export default connect(null)(Movie)
+function mapStateToProps(state){
+  return {
+    movie: state.selectedMovie
+  }
+}
+export default connect(mapStateToProps)(Movie)
