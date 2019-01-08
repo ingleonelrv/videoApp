@@ -1,12 +1,23 @@
 import React, { Component } from 'react'
 import { TextInput, StyleSheet } from 'react-native'
+import {connect} from 'react-redux'
+
+//Importo la API
+import API from '../../../utils/util'
 
 class Search extends Component {
     state={
         text:''
     }
-    handleSubmit = ()=>{
-        console.log(this.state.text)
+    //La funcion es async ya que hago una peticion que puede tardar
+    handleSubmit = async ()=>{
+        const movies = await API.searchMovie(this.state.text)
+        this.props.dispatch({
+            type:'SET_SELECTED_MOVIE',
+            payload:{
+                movie: movies[0]
+            }
+        })
     }
     handleChangeText = (text)=>{
         this.setState({
@@ -34,5 +45,4 @@ const styles = StyleSheet.create({
       borderColor: '#eaeaea'
   }
 })
-
-export default Search
+export default connect(null) (Search)
