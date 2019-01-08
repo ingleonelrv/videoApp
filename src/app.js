@@ -11,6 +11,7 @@ import Header from './sections/components/header'
 import SuggestionList from './videos/containers/suggestion-list'
 import CategoryList from './videos/containers/category-list'
 import Movie from './screens/containers/movie'
+import Search from './sections/containers/search'
 
 class AppLayout extends Component {
     async componentDidMount(){
@@ -36,10 +37,8 @@ class AppLayout extends Component {
     }
     return (
       <Home>
-          <Header>
-            <Text>Hola</Text>
-          </Header>
-          <Text>Buscador</Text>
+          <Header />
+          <Search />
           <CategoryList/>
           <SuggestionList/>
       </Home>
