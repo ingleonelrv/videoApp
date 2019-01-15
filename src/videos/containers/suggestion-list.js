@@ -7,6 +7,9 @@ import Suggestion from '../components/suggestions'
 //Redux
 import {connect} from 'react-redux'
 
+// Importamos nuestro NavigationService
+import NavigationService from '../../navigation/navigation-service'
+
 class SuggestionList extends Component{
     renderEmpty = () => <Empty text='No hay sugerencias en la lista' />
     itemSeparator = () => <VerticalSeparator />
@@ -17,6 +20,8 @@ class SuggestionList extends Component{
                 movie:item
             }
         })
+        // Agregamos la función para ir a Movie
+        NavigationService.navigate('Movie')
     }
     renderItem = ({item}) =>{
         return(

@@ -11,7 +11,7 @@ function Header(props){
     return(
         <View>
             {/* renderiza el contenido para que no salga en la barra de estado Iphone X */}
-            <SafeAreaView>
+            <SafeAreaView style={styles.safeBar}>
                 <View style={styles.container}>
                     <Image 
                         source={require('../../../assets/logo.png')} 
@@ -35,6 +35,9 @@ const styles = StyleSheet.create({
         width:80,
         height:26,
         resizeMode:'contain'
+    },
+    safeBar:{
+        backgroundColor:'white'
     },
     container:{
         padding:10,

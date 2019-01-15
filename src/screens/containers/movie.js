@@ -11,19 +11,15 @@ import Details from '../../videos/components/details'
 //React Native Animated
 import {Animated} from 'react-native'
 
+// Importamos nuestro NavigationService
+import NavigationService from '../../navigation/navigation-service'
+
 class Movie extends Component {
   state={
     opacity:new Animated.Value(0)
   }
-  //en SuggestionList seteo la pelicula seleccionada al store, aqui la borro
-  videoClose = () =>{
-    this.props.dispatch({
-      type:'SET_SELECTED_MOVIE',
-      payload:{
-          movie: null
-      }
-    })
-  }
+  //ELIMINO el metodo videoClose (que quitaba del state selectedMovie)
+
   componentDidMount(){
     //el primer parametro que recibe tiene que ser una instancia de algo que se pueda animar
     //como segundo parametro{a que valor, en que tiempo}
@@ -32,13 +28,23 @@ class Movie extends Component {
       duration:1000
     }).start();
   }
+  // Cambiamos el header de igual forma que en 'app.js'
+  static navigationOptions = ({ nav }) => {
+    return {
+      header: (
+        <Header>
+          <Close
+            // Cambiamos el llamado a la función de volver antigua por la del NavigationService
+            onPress={NavigationService.back}
+          />
+        </Header>
+      )
+    }
+  }
   render() {
     return (
       <Animated.View style={{flex:1,opacity:this.state.opacity}}>
         <MovieLayout>
-            <Header>
-              <Close onPress={this.videoClose} />
-            </Header>
             <Player />
             <Details {...this.props.movie} />
         </MovieLayout>
