@@ -8,14 +8,20 @@ import CategoryListLayout from '../components/category-list-layout'
 //REDUX
 import {connect} from 'react-redux'
 
+import NavigationService from '../../navigation/navigation-service'
+
 class CategoryList extends Component{
     keyExtractor = (item) => item.id.toString()
     renderEmpty = () => <Empty text='No hay categorias en la lista' />
     itemSeparator = () => <HorizontalSeparator />
     renderItem = ({item}) =>{
         return(
-            <Category {...item} />
+            <Category {...item} onCategoryPress={()=>{this.viewCategory(item)}} />
         )
+    }
+    //Cuando clickee cambio de pantalla y le envio un parametro a esa pantalla
+    viewCategory = (item) =>{
+        NavigationService.navigate('Category', {genre: item.genres[0]})
     }
     render(){
         return(

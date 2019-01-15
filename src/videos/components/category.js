@@ -1,11 +1,13 @@
 import React from 'react'
-import {View, Text, ImageBackground,StyleSheet} from 'react-native'
+import {TouchableOpacity, Text, ImageBackground,StyleSheet} from 'react-native'
 
 function Category(props){
     return(
-        <ImageBackground style={styles.wrapper} source={{uri:props.background_image}}>
-            <Text style={styles.genre}>{props.genres[0]}</Text>
-        </ImageBackground>
+        <TouchableOpacity onPress={props.onCategoryPress}>
+            <ImageBackground style={styles.wrapper} source={{uri:props.background_image}}>
+                <Text style={styles.genre}>{props.genres[0]}</Text>
+            </ImageBackground>
+        </TouchableOpacity>
     )  
 }
 const styles= StyleSheet.create({

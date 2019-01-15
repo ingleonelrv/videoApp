@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import AppLayout from './src/app'
 import Loading from './src/sections/components/loading'
 import Movie from './src/screens/containers/movie'
+import Category from './src/screens/containers/category'
 
 //REDUX
 import {Provider} from 'react-redux'
@@ -21,7 +22,8 @@ import {createStackNavigator, createAppContainer} from 'react-navigation'
 const TopLevelNavigator = createStackNavigator({ 
   // Recordatorio: AppLayout es nuestro componente principal y debe estar importado
   Home: AppLayout,
-  Movie: Movie
+  Movie: Movie,
+  Category
 })
 const AppNavigator= createAppContainer(TopLevelNavigator)
 

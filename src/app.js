@@ -34,9 +34,7 @@ class AppLayout extends Component {
     return {
       // Los paréntesis estan porque así podemos poner todo en más de una línea
       header: (
-        <Header>
-          
-        </Header>
+        <Header />
       )
     }
   }
