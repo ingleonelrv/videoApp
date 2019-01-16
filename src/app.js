@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import {StatusBar} from 'react-native'
 
 //IMPORT el API
 import API from '../utils/util'
@@ -22,6 +23,11 @@ class AppLayout extends Component {
     }
   }
   async componentDidMount(){
+    this.focus=this.props.navigation.addListener('didFocus', ()=>{
+      // Esto me cambia el texto del statusbar
+      StatusBar.setBarStyle('dark-content');
+      StatusBar.setBackgroundColor('white')
+    })
     //hago la peticion y despacho la accion, un poco de UX
     const categoryList = await API.getMovies();
     this.props.dispatch({
@@ -37,6 +43,9 @@ class AppLayout extends Component {
         suggestionList
       }
     })
+  }
+  componentWillUnmount(){
+    this.focus.remove()
   }
   render() {
     // BORRAMOS el if para ver si mostrar Movies o Home

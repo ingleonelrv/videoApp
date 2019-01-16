@@ -4,6 +4,7 @@ import {
   Text,
   StyleSheet,
   Image,
+  StatusBar
 } from 'react-native';
 
 import Icon from '../../sections/components/icon'
@@ -14,6 +15,17 @@ class About extends Component {
       title: 'Acerca',
       tabBarIcon:<Icon icon='©' />
     }
+  }
+  componentDidMount(){
+    //asignamos el listener a una variable para poder desmontarlo luego
+    this.focus=this.props.navigation.addListener('didFocus', ()=>{
+      // Esto me cambia el texto del statusbar
+      StatusBar.setBarStyle('light-content');
+      StatusBar.setBackgroundColor('#022c43')
+    })
+  }
+  componentWillUnmount(){
+    this.focus.remove()
   }
   render() {
     return (

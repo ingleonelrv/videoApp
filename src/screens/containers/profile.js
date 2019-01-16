@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   StyleSheet,
   Button,
+  StatusBar
 } from 'react-native';
 import Icon from '../../sections/components/icon'
 
@@ -14,6 +15,17 @@ class Profile extends Component {
       title: 'Perfil',
       tabBarIcon:<Icon icon='🙎‍' />
     }
+  }
+  componentDidMount(){
+    //asignamos el listener a una variable para poder desmontarlo luego
+    this.focus=this.props.navigation.addListener('didFocus', ()=>{
+      // Esto me cambia el texto del statusbar
+      StatusBar.setBarStyle('dark-content');
+      StatusBar.setBackgroundColor('white')
+    })
+  }
+  componentWillUnmount(){
+    this.focus.remove()
   }
   render() {
     return (
