@@ -8,7 +8,7 @@ import {
   StatusBar
 } from 'react-native';
 import Icon from '../../sections/components/icon'
-
+import {connect} from 'react-redux'
 class Profile extends Component {
   static navigationOptions = ({ nav }) => {
     return {
@@ -27,13 +27,20 @@ class Profile extends Component {
   componentWillUnmount(){
     this.focus.remove()
   }
+  handleLogout=()=>{
+    this.props.dispatch({
+      type:'REMOVE_USER',
+    })
+    this.props.navigation.navigate('LoadingScreen');
+  }
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <Text>Nombre de usuario</Text>
+        <Text>{this.props.user}</Text>
         <Button
           title="Cerrar sesión"
           color="#67a52e"
+          onPress={this.handleLogout}
         />
       </SafeAreaView>
     )
@@ -47,6 +54,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   }
 })
+function mapStateToProps(state){
+  //como solo hay un reducer accedo directo al key
+  return{
+    user:state.username
+  }
+}
 
-
-export default Profile
+export default connect(mapStateToProps) (Profile)

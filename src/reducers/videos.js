@@ -11,6 +11,13 @@ function videos(state={}, action){
         case 'SET_SELECTED_MOVIE':{
             return { ...state, selectedMovie: action.payload.movie}
         }
+        case 'SET_USER':{
+            return {...action.payload}
+        }
+        case 'REMOVE_USER':{
+            //no puedo retornar false xq mi estado inicial retorna objeto
+            return {}
+        }
         default:
             return state      
     }

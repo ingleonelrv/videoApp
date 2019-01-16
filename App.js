@@ -8,6 +8,8 @@ import Category from './src/screens/containers/category'
 import About from './src/screens/containers/about'
 import Profile from './src/screens/containers/profile'
 import Lucky from './src/screens/containers/lucky'
+import Login from './src/screens/containers/login'
+import LoadingScreen from './src/screens/containers/loading'
 import Icon from './src/sections/components/icon'
 
 //REDUX
@@ -19,7 +21,7 @@ import {PersistGate} from 'redux-persist/integration/react'
 //react-navigation
 // Importamos nuestro archivo anteriormente creado
 import NavigationService from './src/navigation/navigation-service';
-import {createStackNavigator,createBottomTabNavigator, createAppContainer} from 'react-navigation'
+import {createStackNavigator,createBottomTabNavigator,createSwitchNavigator, createAppContainer} from 'react-navigation'
 
 
 // Creamos un StackNavigator, el Navigator anteriormente mencionado (_navigator).
@@ -55,7 +57,14 @@ const TabNavigator = createBottomTabNavigator(
     }
   }
 )
-const AppNavigator= createAppContainer(TabNavigator)
+const SwitchNavigator = createSwitchNavigator({
+    App: TabNavigator,
+    Login: Login,
+    LoadingScreen: LoadingScreen
+  },{
+    initialRouteName:'LoadingScreen'
+  })
+const AppNavigator= createAppContainer(SwitchNavigator)
 
 
 type Props = {};
