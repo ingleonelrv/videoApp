@@ -12,6 +12,15 @@ import CategoryList from './videos/containers/category-list'
 import Search from './sections/containers/search'
 
 class AppLayout extends Component {
+  // Cambiamos el header por el que ya creamos nosotros
+  static navigationOptions = ({ nav }) => {
+    return {
+      // Los paréntesis estan porque así podemos poner todo en más de una línea
+      header: (
+        <Header />
+      )
+    }
+  }
   async componentDidMount(){
     //hago la peticion y despacho la accion, un poco de UX
     const categoryList = await API.getMovies();
@@ -28,15 +37,6 @@ class AppLayout extends Component {
         suggestionList
       }
     })
-  }
-  // Cambiamos el header por el que ya creamos nosotros
-  static navigationOptions = ({ nav }) => {
-    return {
-      // Los paréntesis estan porque así podemos poner todo en más de una línea
-      header: (
-        <Header />
-      )
-    }
   }
   render() {
     // BORRAMOS el if para ver si mostrar Movies o Home

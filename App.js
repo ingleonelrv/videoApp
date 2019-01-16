@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 
-////IMPORT mi Screen Principal
+////IMPORT mis pantallas
 import AppLayout from './src/app'
 import Loading from './src/sections/components/loading'
 import Movie from './src/screens/containers/movie'
 import Category from './src/screens/containers/category'
+import About from './src/screens/containers/about'
+import Profile from './src/screens/containers/profile'
+import Lucky from './src/screens/containers/lucky'
+import Icon from './src/sections/components/icon'
 
 //REDUX
 import {Provider} from 'react-redux'
@@ -15,7 +19,7 @@ import {PersistGate} from 'redux-persist/integration/react'
 //react-navigation
 // Importamos nuestro archivo anteriormente creado
 import NavigationService from './src/navigation/navigation-service';
-import {createStackNavigator, createAppContainer} from 'react-navigation'
+import {createStackNavigator,createBottomTabNavigator, createAppContainer} from 'react-navigation'
 
 
 // Creamos un StackNavigator, el Navigator anteriormente mencionado (_navigator).
@@ -25,13 +29,40 @@ const TopLevelNavigator = createStackNavigator({
   Movie: Movie,
   Category
 })
-const AppNavigator= createAppContainer(TopLevelNavigator)
+const TabNavigator = createBottomTabNavigator(
+  {
+    Home: {
+      screen: TopLevelNavigator,
+      navigationOptions:{
+        title: 'Inicio',
+        tabBarIcon:<Icon icon='🏠' />
+      }
+    },
+    About:{
+      screen: About
+    },
+    Lucky:{
+      screen:Lucky
+    },
+    Profile:{
+      screen:Profile
+    }
+  },
+  {
+    tabBarOptions:{
+      activeTintColor:'white',
+      activeBackgroundColor:'#65a721'
+    }
+  }
+)
+const AppNavigator= createAppContainer(TabNavigator)
 
 
 type Props = {};
 export default class App extends Component<Props> {
-  
   render() {
+    //Desactiva los warnings en el emulador
+    console.disableYellowBox=true
     return (
       <Provider store={store}>
         <PersistGate loading={<Loading />} persistor={persistor}>
