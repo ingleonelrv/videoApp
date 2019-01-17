@@ -21,7 +21,11 @@ import {PersistGate} from 'redux-persist/integration/react'
 //react-navigation
 // Importamos nuestro archivo anteriormente creado
 import NavigationService from './src/navigation/navigation-service';
-import {createStackNavigator,createBottomTabNavigator,createSwitchNavigator, createAppContainer} from 'react-navigation'
+import {createStackNavigator,
+  createBottomTabNavigator,
+  createSwitchNavigator, 
+  createDrawerNavigator,
+  createAppContainer} from 'react-navigation'
 
 
 // Creamos un StackNavigator, el Navigator anteriormente mencionado (_navigator).
@@ -71,8 +75,46 @@ const withModal = createStackNavigator({
     }
   }
 )
+//pone un menu a la izquierda
+const DrawerNavigator=createDrawerNavigator(
+  {
+    Main:{
+      screen:withModal
+    },
+    Sobre:{
+      screen:About
+    },
+    Suerte:{
+      screen:Lucky
+    }
+  },{
+    //ancho del menu lateral
+    drawerWidth:200,
+    drawerBackgroundColor:'#f6f6f6',
+    //opciones de los elementos del menu
+    contentOptions:{
+      activeBackgroundColor:'#7aba2f',
+      activeTintColor:'white',
+      inactiveTintColor:'#828282',
+      inactiveBackgroundColor:'white',
+      //cada elemento: 3
+      itemStyle:{
+        borderBottomWidth:.5,
+        borderBottomColor: 'rgba(0,0,0,.5)'
+      },
+      //en Lucky puedo pasarle el: drawerIcon: <>
+      //stylo al texto de cada item
+      labelStyle:{
+        marginHorizontal:0
+      },
+      iconContainerStyle:{
+        marginHorizontal:5
+      }
+    }
+  }
+)
 const SwitchNavigator = createSwitchNavigator({
-    App: withModal,
+    App: DrawerNavigator,
     Login: Login,
     LoadingScreen: LoadingScreen
   },{
