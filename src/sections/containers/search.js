@@ -5,6 +5,8 @@ import {connect} from 'react-redux'
 //Importo la API
 import API from '../../../utils/util'
 
+import NavigationService from '../../navigation/navigation-service'
+
 class Search extends Component {
     state={
         text:''
@@ -18,6 +20,8 @@ class Search extends Component {
                 movie: movies[0]
             }
         })
+        //podria usar un dispatch, importar NavigationActions y lanzar navigate pero ya tengo mi clase
+        NavigationService.navigate('Movie')
     }
     handleChangeText = (text)=>{
         this.setState({

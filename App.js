@@ -28,7 +28,7 @@ import {createStackNavigator,createBottomTabNavigator,createSwitchNavigator, cre
 const TopLevelNavigator = createStackNavigator({ 
   // Recordatorio: AppLayout es nuestro componente principal y debe estar importado
   Home: AppLayout,
-  Movie: Movie,
+  //me llevo Movie hacia withModal
   Category
 })
 const TabNavigator = createBottomTabNavigator(
@@ -57,8 +57,22 @@ const TabNavigator = createBottomTabNavigator(
     }
   }
 )
+const withModal = createStackNavigator({
+    Main:{
+      screen: TabNavigator
+    },
+    Movie: Movie,
+  },
+  {
+    mode:'modal',
+    headerMode:'none',
+    navigationOptions:{
+      gesturesEnabled: true,
+    }
+  }
+)
 const SwitchNavigator = createSwitchNavigator({
-    App: TabNavigator,
+    App: withModal,
     Login: Login,
     LoadingScreen: LoadingScreen
   },{

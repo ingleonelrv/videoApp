@@ -15,7 +15,7 @@ function videos(state={}, action){
             return {...action.payload}
         }
         case 'REMOVE_USER':{
-            //no puedo retornar false xq mi estado inicial retorna objeto
+            //no puedo retornar false xq mi estado inicial retorna objeto, aunq esto friega la persistencia
             return {}
         }
         default:
